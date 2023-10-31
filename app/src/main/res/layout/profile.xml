@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/topcon3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+    <com.scwang.wave.MultiWaveHeader
+        android:id="@+id/multiWaveHeader2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:mwhCloseColor="#89E1F6"
+        app:mwhEnableFullScreen="true"
+        app:mwhProgress="0.19"
+        app:mwhVelocity="25"
+        app:mwhStartColor="#085568"
+        tools:ignore="MissingClass">
+
+    </com.scwang.wave.MultiWaveHeader>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="67dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <ImageButton
+            android:id="@+id/tton33"
+            android:layout_width="83dp"
+            android:layout_height="68dp"
+            android:backgroundTint="#00FFFFFF"
+            android:contentDescription="TODO"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="?attr/homeAsUpIndicator"
+            app:tint="#FFFFFF"
+            tools:ignore="DuplicateIds,MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="35dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="118dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="139dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:gravity="center"
+            android:text="@string/information_xog"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/enter_name_gali_magacaga">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/enter_phone_number_gali_number_kaaga">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="246dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                style="@style/CustomRadioButtonStyle"
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:text="@string/english"
+                app:buttonTint="#17849F" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                style="@style/CustomRadioButtonStyle"
+                android:layout_width="106dp"
+                android:layout_height="wrap_content"
+                android:text="@string/somali"
+                app:buttonTint="#17849F" />
+
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="60dp"
+            android:background="@drawable/button_background"
+            android:text="@string/save"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:backgroundTint="#17849F" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layimg"
+        android:layout_width="193dp"
+        android:layout_height="143dp"
+        android:layout_marginTop="118dp"
+        android:layout_marginBottom="29dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgViewprofile"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/iconuser"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp" />
+
+        <ImageView
+            android:id="@+id/imgViewEdit"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="-20dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_edit_profile" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

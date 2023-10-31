@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Sarifle</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="head">Sarifle available contacts</string>
+    <string name="welcome_to">Welcome to ......</string>
+    <string name="information_xog">Information</string>
+    <string name="enter_name_gali_magacaga">Enter Name</string>
+    <string name="enter_phone_number_gali_number_kaaga">Enter phone number</string>
+    <string name="somali">Somali</string>
+    <string name="english">English</string>
+    <string name="save">Save</string>
+    <string name="makesure">please fill all the profile data</string>
+    <string name="permition1">This app requires the CALL_PHONE permission to make phone calls. if you don\'t allow this the second time you can\'t use this app.\n\nN.B:\nHadaa diiday app permission ka go to setting>app>testchash allow phone and sms</string>
+    <string name="permition2">Hadaadan \'Allow\' dhahin app ka makuu shaqeyndono. hadaa markale diidid app ka kuma shaqeyn dono\n\nN.B:\nHadaa diiday app permission ka go to setting>app>testchash allow phone and sms</string>
+    <string name="skip1">This profile is usefull for you especialy the language selection do you stil want to skip this.\n\nN.B:\nThis data will only stay in your phone.</string>
+    <string name="skip2">Xogtaan adey kuu fecan tahay inaa buxisid gaar ahaan luqada, wali ma rabtaa inaa katagtid\n\nN.B:\nXogtaan telephone kaaga bis ayuu ku egyahay ogow</string>
+    <string name="money">Enter the amount</string>
+    <string name="sarifo">Exchange</string>
+    <string name="empty">List is empty click the + button to add Sarifle</string>
+    <string name="emptytext">Select Sarifle from the List below</string>
+    <string name="error">Fill the money box to continue</string>
+    <string name="title_activity_splash2">splash2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+
+</resources>

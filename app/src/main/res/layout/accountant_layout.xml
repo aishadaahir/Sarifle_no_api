@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aandroid="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notelayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15sp"
+    android:layout_marginStart="15dp"
+    aandroid:background="@drawable/rounded"
+    android:elevation="2sp"
+    android:orientation="horizontal">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="123dp"
+        android:background="@drawable/rounded"
+        android:clickable="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="67dp">
+
+        <TextView
+            android:id="@+id/Name"
+            android:layout_width="178dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="5dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/Sarifle"
+            android:layout_width="212dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/Name" />
+
+        <TextView
+            android:id="@+id/Accountnum"
+            android:layout_width="164dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="17dp"
+            android:ems="10"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/Sarifle" />
+
+        <ImageButton
+            android:id="@+id/AddId"
+            android:layout_width="45dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="45dp"
+            android:backgroundTint="#006A3838"
+            android:contentDescription="TODO"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_input_add"
+            app:tint="#0D8AF5" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="79dp"
+            android:layout_height="81dp"
+            android:contentDescription="TODO"
+            tools:layout_editor_absoluteX="-3dp"
+            tools:layout_editor_absoluteY="23dp"
+            tools:srcCompat="@android:drawable/btn_star_big_on" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
