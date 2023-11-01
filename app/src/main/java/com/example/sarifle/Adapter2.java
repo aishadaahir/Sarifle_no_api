@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sarifle.database.DatabaseHelper2;
@@ -31,14 +32,17 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.MyViewHolder> {
     private Activity activity;
     private String data;
     private ArrayList Id,Name,Sarifle,Tell,Tell2,Accountnum,Datereg;
-    ItemClicklistner ItemClicklistner;
+//    ItemClicklistner ItemClicklistner;
     ItemClicklistner2 ItemClicklistner2;
     DatabaseHelper3 myDB3;
 
     private int highlightedPosition = -1;
+    private int colorResource;
     private int selectedIndex = -1;// Initially no item is highlighted
     Adapter2(Activity activity, Context context, ArrayList Id, ArrayList Name, ArrayList Sarifle, ArrayList Tell,
-            ArrayList Tell2,ArrayList Accountnum,ArrayList Datereg,String data,DatabaseHelper3 myDB3,DatabaseHelper2 myDB2,ItemClicklistner ItemClicklistner,ItemClicklistner2 ItemClicklistner2){
+            ArrayList Tell2,ArrayList Accountnum,ArrayList Datereg,String data,DatabaseHelper3 myDB3,DatabaseHelper2 myDB2,int colorResource
+//            ,ItemClicklistner ItemClicklistner
+            ,ItemClicklistner2 ItemClicklistner2){
         this.activity = activity;
         this.context = context;
         this.Id = Id;
@@ -51,7 +55,8 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.MyViewHolder> {
         this.data = data;
         this.myDB3 = myDB3;
         this.myDB2 = myDB2;
-        this.ItemClicklistner = ItemClicklistner;
+        this.colorResource = colorResource;
+//        this.ItemClicklistner = ItemClicklistner;
         this.ItemClicklistner2 = ItemClicklistner2;
     }
 
@@ -85,7 +90,7 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.MyViewHolder> {
         if(data == ""){
             if (position == highlightedPosition) {
                 // Apply the highlight effect to the item view
-                holder.layoutchange.setBackgroundColor(Color.parseColor("#17849F"));
+                holder.layoutchange.setBackgroundColor(colorResource);
             } else {
                 // Revert the item view to its default appearance
                 holder.layoutchange.setBackgroundColor(Color.TRANSPARENT);
@@ -94,13 +99,12 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.MyViewHolder> {
         else{
             if (data.equals(holder.Sarifle2.getText().toString())) {
                 // Apply the highlight effect to the item view
-                holder.layoutchange.setBackgroundColor(Color.parseColor("#17849F"));
+                holder.layoutchange.setBackgroundColor(colorResource);
             } else {
                 // Revert the item view to its default appearance
                 holder.layoutchange.setBackgroundColor(Color.TRANSPARENT);
             }
         }
-
 //
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,15 +124,15 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.MyViewHolder> {
             }
         });
 
-        holder.DeleteId.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, home.class);
-                intent.putExtra("ID", String.valueOf(Id.get(position)));
-
-                ItemClicklistner.onItem(position,intent);
-            }
-        });
+//        holder.DeleteId.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, home.class);
+//                intent.putExtra("ID", String.valueOf(Id.get(position)));
+//
+//                ItemClicklistner.onItem(position,intent);
+//            }
+//        });
 
     }
 
@@ -140,11 +144,14 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.MyViewHolder> {
         int previousSelectedIndex = 0;
 
         if (previousSelectedIndex >= 0 && previousSelectedIndex < Id.size() && position >= 0 && position < Id.size()) {
-
+//            Id,Name,Sarifle,Tell,Tell2,Accountnum,Datereg;
+            Collections.swap(Id, previousSelectedIndex, position);
             Collections.swap(Name, previousSelectedIndex, position);
             Collections.swap(Sarifle, previousSelectedIndex, position);
             Collections.swap(Accountnum, previousSelectedIndex, position);
-
+            Collections.swap(Tell, previousSelectedIndex, position);
+            Collections.swap(Tell2, previousSelectedIndex, position);
+//ss
             notifyItemMoved(position, previousSelectedIndex);
             notifyItemChanged(previousSelectedIndex);
             notifyItemChanged(position);
@@ -174,7 +181,7 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.MyViewHolder> {
 
         TextView Name2,Tell,Tell2,Accountnum2,date,Sarifle2;
         ImageView image;
-        ImageButton DeleteId;
+//        ImageButton DeleteId;
 
         ConstraintLayout layout,layoutchange;
 
@@ -184,7 +191,7 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.MyViewHolder> {
             image = itemView.findViewById(R.id.imageView);
             Sarifle2 = itemView.findViewById(R.id.Sarifle2);
             Accountnum2 = itemView.findViewById(R.id.Accountnum2);
-            DeleteId = itemView.findViewById(R.id.DeleteId);
+//            DeleteId = itemView.findViewById(R.id.DeleteId);
             layout = itemView.findViewById(R.id.layout);
             layoutchange = itemView.findViewById(R.id.layoutchange);
         }

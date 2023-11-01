@@ -52,7 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues2 = new ContentValues();
         contentValues2.put(COL1, "2");
         contentValues2.put(COL2, "alia");
-        contentValues2.put(COL3, "252615215720");
+        contentValues2.put(COL3, "252617515720");
         contentValues2.put(COL4, "252634435541");
         contentValues2.put(COL5, "340204");
         contentValues2.put(COL6, "10/25/2023");

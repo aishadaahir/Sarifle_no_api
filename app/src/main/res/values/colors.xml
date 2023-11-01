@@ -5,5 +5,7 @@
     <color name="status_bar_color">#000000</color>
     <color name="colorPrimary">#4E84C1</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="dark_teal">#085568</color>
+    <color name="light_teal">#17849F</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
 </resources>
