@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,6 +64,7 @@ public class home extends AppCompatActivity {
     private static String lang;
     private static String Activity;
     private boolean isLanguageChanged = false;
+    private int colorResource;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -125,6 +127,7 @@ public class home extends AppCompatActivity {
         v1 = findViewById(R.id.view1);
         v2 = findViewById(R.id.view2);
 
+        colorResource = getResources().getColor(R.color.light_teal);
 
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -275,35 +278,37 @@ public class home extends AppCompatActivity {
         filltxt(data);
 
 
-        Adapter = new Adapter2(home.this,this, Id,Name,Sarifle,Tell,Tell2,Accountnum,Datereg,data,myDB3,myDB2,new Adapter2.ItemClicklistner() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onItem(int position,Intent intent) {
-
-                String id = intent.getExtras().getString("ID");
-                myDB2.deleteOneRow(id);
-
-                myDB2.deleteOneRow(id);
-
-//                recyclerView.setAdapter(null);
-                Toast.makeText(home.this, "Sarifle removed from list", Toast.LENGTH_SHORT).show();
-                myDB2 = new DatabaseHelper2(home.this);
-                Id = new ArrayList<>();
-                Name = new ArrayList<>();
-                Sarifle = new ArrayList<>();
-                Tell = new ArrayList<>();
-                Tell2 = new ArrayList<>();
-                Accountnum = new ArrayList<>();
-                Datereg = new ArrayList<>();
-                Adapter.notifyDataSetChanged();
-                storeDataInArrays();
-                getData();
-                filltxt(data);
-
-
-            }
-
-        },new Adapter2.ItemClicklistner2() {
+        Adapter = new Adapter2(home.this,this, Id,Name,Sarifle,Tell,Tell2,Accountnum,Datereg,data,myDB3,myDB2,colorResource
+//                ,new Adapter2.ItemClicklistner() {
+//            @SuppressLint("NotifyDataSetChanged")
+//            @Override
+//            public void onItem(int position,Intent intent) {
+//
+//                String id = intent.getExtras().getString("ID");
+//                myDB2.deleteOneRow(id);
+//
+//                myDB2.deleteOneRow(id);
+//
+////                recyclerView.setAdapter(null);
+//                Toast.makeText(home.this, "Sarifle removed from list", Toast.LENGTH_SHORT).show();
+//                myDB2 = new DatabaseHelper2(home.this);
+//                Id = new ArrayList<>();
+//                Name = new ArrayList<>();
+//                Sarifle = new ArrayList<>();
+//                Tell = new ArrayList<>();
+//                Tell2 = new ArrayList<>();
+//                Accountnum = new ArrayList<>();
+//                Datereg = new ArrayList<>();
+//                Adapter.notifyDataSetChanged();
+//                storeDataInArrays();
+//                getData();
+//                filltxt(data);
+//
+//
+//            }
+//
+//        }
+        ,new Adapter2.ItemClicklistner2() {
             @Override
             public void onItem(int position,Intent intent,String data) {
                 text1.setText(intent.getExtras().getString("Sarifle"));
@@ -347,22 +352,32 @@ public class home extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
-            recreate();
-        }
-    }
 
     void storeDataInArrays(){
-
         Cursor cursor = myDB2.readAllData();
         if(cursor.getCount() == 0){
+            SQLiteDatabase db = myDB2.getWritableDatabase();
+            myDB2.insertInitialData(db);
+            db.close();
+            Cursor cursor2 = myDB2.readAllData();
+            if(cursor2.getCount() == 0){
 
-            empty.setVisibility(View.VISIBLE);
-            v1.setVisibility(View.GONE);
-            v2.setVisibility(View.GONE);
+            }else{
+                empty.setVisibility(View.GONE);
+                v1.setVisibility(View.VISIBLE);
+                v2.setVisibility(View.VISIBLE);
+                while (cursor2.moveToNext()){
+                    Id.add(cursor2.getString(1));
+                    Name.add(cursor2.getString(2));
+                    Sarifle.add(cursor2.getString(3));
+                    Tell.add(cursor2.getString(4));
+                    Tell2.add(cursor2.getString(5));
+                    Accountnum.add(cursor2.getString(6));
+
+                }
+
+            }
+
         }else{
             empty.setVisibility(View.GONE);
             v1.setVisibility(View.VISIBLE);
@@ -440,16 +455,17 @@ public class home extends AppCompatActivity {
             builder.setTitle(getResources().getString(R.string.head))
                     .setItems(items, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            String phoneNumber= (String) items[which];
-                            String shareBody = "sarifle (name) waxaan rabe inaan sarif kaa qaato";
-                            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                            sharingIntent.setType("text/plain");
+                            String phoneNumber = (String) items[which];
+                            String shareBody = "Asc " + text1.getText();
+                            Uri uri = Uri.parse("smsto:" + phoneNumber);
+                            Intent sharingIntent = new Intent(Intent.ACTION_SENDTO, uri);
                             sharingIntent.setPackage("com.whatsapp");
+//                            sharingIntent.putExtra("sms_body", shareBody);
                             sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
-                            sharingIntent.putExtra("jid", phoneNumber + "@s.whatsapp.net");
+                            int requestCode = 123; // Choose your own request code
 
                             try {
-                                startActivity(sharingIntent);
+                                startActivityForResult(sharingIntent, requestCode);
                             } catch (android.content.ActivityNotFoundException ex) {
                                 Toast.makeText(home.this, "WhatsApp is not installed.", Toast.LENGTH_SHORT).show();
                             }
@@ -459,6 +475,20 @@ public class home extends AppCompatActivity {
                     .show();
         }
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            recreate();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 123) { // Use the same request code as before
+            // Perform any necessary actions after sharing
+        }
     }
 
     public void showShareMenu() {

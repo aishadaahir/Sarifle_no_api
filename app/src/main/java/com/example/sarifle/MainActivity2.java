@@ -69,137 +69,135 @@ public class MainActivity2 extends AppCompatActivity implements TabbedDialog.Dia
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         multiWaveHeader = findViewById(R.id.multiWaveHeader);
-        LayoutInflater inflater = getLayoutInflater();
-        view = inflater.inflate(R.layout.activity_register, null);
-        container = findViewById(R.id.container);
-        radioGroup = view.findViewById(R.id.radioGroup);
-        radioButton1 = view.findViewById(R.id.radioButton1);
-        radioButton2 = view.findViewById(R.id.radioButton2);
-        name = view.findViewById(R.id.name);
-        phone = view.findViewById(R.id.phone);
+//        LayoutInflater inflater = getLayoutInflater();
+//        view = inflater.inflate(R.layout.activity_register, null);
+//        container = findViewById(R.id.container);
+
+//        radioGroup = view.findViewById(R.id.radioGroup);
+//        radioButton1 = view.findViewById(R.id.radioButton1);
+//        radioButton2 = view.findViewById(R.id.radioButton2);
+
+//        name = view.findViewById(R.id.name);
+//        phone = view.findViewById(R.id.phone);
         myDB = new DatabaseHelper3(MainActivity2.this);
-        save = view.findViewById(R.id.save);
-        imgView=view.findViewById(R.id.imgViewprofile);
-        imgViewEdit=view.findViewById(R.id.imgViewEdit);
-        topcon4=view.findViewById(R.id.topcon4);
-        topcon5=findViewById(R.id.topcon5);
-        layimg=view.findViewById(R.id.layimg);
-        Layout=view.findViewById(R.id.linearLayout2);
-        imageButton = findViewById(R.id.skip);
-        imageButton.setVisibility(View.GONE);
+//        save = view.findViewById(R.id.save);
+//        imgView=view.findViewById(R.id.imgViewprofile);
+//        imgViewEdit=view.findViewById(R.id.imgViewEdit);
+//        topcon4=view.findViewById(R.id.topcon4);
+//        topcon5=findViewById(R.id.topcon5);
+//        layimg=view.findViewById(R.id.layimg);
+//        Layout=view.findViewById(R.id.linearLayout2);
+//        imageButton = findViewById(R.id.skip);
+//        imageButton.setVisibility(View.GONE);
 
-        int orientation = getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            ORIENTATION_LANDSCAPE();
-        } else {
-            ORIENTATION_PORTRAIT();
-        }
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                int selectedId = radioGroup.getCheckedRadioButtonId();
-                String names = name.getText().toString();
-                String phones = phone.getText().toString();
-                if(!names.equals("") && !phones.equals("") && !String.valueOf(selectedId).equals("-1")){
-                    RadioButton selectedRadioButton = findViewById(selectedId);
-                    String selectedOption = selectedRadioButton.getText().toString();
-                    if(encodedImage1.isEmpty()){
-                        encodedImage1="placeholder_image_path";
-                        Log.e("errre",encodedImage1);
-                    }
-                    else if (encodedImage1=="") {
-                        encodedImage1="placeholder_image_path";
-                        Log.e("errre",encodedImage1);
-                    }
-                    myDB.delete();
-                    myDB.addData(names,phones,selectedOption,"",encodedImage1);
-                    Toast.makeText(MainActivity2.this, getResources().getString(R.string.save), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), home.class));
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                    finish();
-                }
-                else{
-                    Toast.makeText(MainActivity2.this, getResources().getString(R.string.makesure), Toast.LENGTH_SHORT).show();
-                }
-
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                View view = getCurrentFocus();
-                if (view != null) {
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-            }
-
-        });
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                count=true;
-                TabbedDialog tabbedDialog = new TabbedDialog(
-                        getResources().getString(R.string.skip1),
-                        getResources().getString(R.string.skip2),
-                        "Cancel",
-                        "Skip",
-                        MainActivity2.this
-                );
-
-                // Show the TabbedDialog
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                tabbedDialog.show(fragmentManager, "tabbed_dialog");
-
-            }
-
-        });
+//        int orientation = getResources().getConfiguration().orientation;
+//        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            ORIENTATION_LANDSCAPE();
+//        } else {
+//            ORIENTATION_PORTRAIT();
+//        }
+//        save.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                int selectedId = radioGroup.getCheckedRadioButtonId();
+//                String names = name.getText().toString();
+//                String phones = phone.getText().toString();
+//                if(!names.equals("") && !phones.equals("") && !String.valueOf(selectedId).equals("-1")){
+//                    RadioButton selectedRadioButton = findViewById(selectedId);
+//                    String selectedOption = selectedRadioButton.getText().toString();
+//                    if(encodedImage1.isEmpty()){
+//                        encodedImage1="placeholder_image_path";
+//                        Log.e("errre",encodedImage1);
+//                    }
+//                    else if (encodedImage1=="") {
+//                        encodedImage1="placeholder_image_path";
+//                        Log.e("errre",encodedImage1);
+//                    }
+//                    myDB.delete();
+//                    myDB.addData(names,phones,selectedOption,"",encodedImage1);
+//                    Toast.makeText(MainActivity2.this, getResources().getString(R.string.save), Toast.LENGTH_SHORT).show();
+//                    startActivity(new Intent(getApplicationContext(), home.class));
+//                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//                    finish();
+//                }
+//                else{
+//                    Toast.makeText(MainActivity2.this, getResources().getString(R.string.makesure), Toast.LENGTH_SHORT).show();
+//                }
+//
+//                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//                View view = getCurrentFocus();
+//                if (view != null) {
+//                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//                }
+//
+//            }
+//
+//        });
+//        imageButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                count=true;
+//                TabbedDialog tabbedDialog = new TabbedDialog(
+//                        getResources().getString(R.string.skip1),
+//                        getResources().getString(R.string.skip2),
+//                        "Cancel",
+//                        "Skip",
+//                        MainActivity2.this
+//                );
+//
+//                // Show the TabbedDialog
+//                FragmentManager fragmentManager = getSupportFragmentManager();
+//                tabbedDialog.show(fragmentManager, "tabbed_dialog");
+//
+//            }
+//
+//        });
 
 
         requestCallPhonePermission();
 
-        imgViewEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
-            }
-        });
+//        imgViewEdit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
+//            }
+//        });
 
 
     }
 
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == 1) {
-            uri1 = data.getData();
-            try {
-                bitmap1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri1);
-                imgView.setImageBitmap(bitmap1);
-                bitmap1.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream1);
-                encodedImage1 = Base64.encodeToString(byteArrayOutputStream1.toByteArray(), Base64.DEFAULT);
-            } catch (Exception e) {
-
-            }
-        }
-
-
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == RESULT_OK && requestCode == 1) {
+//            uri1 = data.getData();
+//            try {
+//                bitmap1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri1);
+//                imgView.setImageBitmap(bitmap1);
+//                bitmap1.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream1);
+//                encodedImage1 = Base64.encodeToString(byteArrayOutputStream1.toByteArray(), Base64.DEFAULT);
+//            } catch (Exception e) {
+//
+//            }
+//        }
+//
+//
+//    }
 
     private void checkprof(){
         Cursor cursor2 = myDB.readAllData();
         if(cursor2.getCount() == 0){
-            SQLiteDatabase db = myDB.getWritableDatabase();
-            // Call onUpgrade to recreate the table
-            myDB.onUpgrade(db, 0, 0);
-            // Close the database
-            db.close();
-            container.addView(view);
-            imageButton.setVisibility(View.VISIBLE);
-
+            myDB.addData("", "", "", "", "placeholder_image_path");
+            startActivity(new Intent(getApplicationContext(), home.class));
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            finish();
         }else{
             startActivity(new Intent(getApplicationContext(), home.class));
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -315,31 +313,31 @@ public class MainActivity2 extends AppCompatActivity implements TabbedDialog.Dia
 
     }
 
-    public void ORIENTATION_PORTRAIT() {
-        layimg.setVisibility(View.VISIBLE);
-    }
-
-    public void ORIENTATION_LANDSCAPE() {
-        layimg.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-
-        super.onConfigurationChanged(newConfig);
-        // Update the UI based on the new configuration
-        updateUIForOrientation(newConfig.orientation);
-    }
-    private void updateUIForOrientation(int orientation) {
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            ORIENTATION_LANDSCAPE();
-
-        }
-        else if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            ORIENTATION_PORTRAIT();
-
-        }
-    }
+//    public void ORIENTATION_PORTRAIT() {
+////        layimg.setVisibility(View.VISIBLE);
+//    }
+//
+//    public void ORIENTATION_LANDSCAPE() {
+////        layimg.setVisibility(View.GONE);
+//    }
+//
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//
+//        super.onConfigurationChanged(newConfig);
+//        // Update the UI based on the new configuration
+//        updateUIForOrientation(newConfig.orientation);
+//    }
+//    private void updateUIForOrientation(int orientation) {
+//        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            ORIENTATION_LANDSCAPE();
+//
+//        }
+//        else if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+//            ORIENTATION_PORTRAIT();
+//
+//        }
+//    }
 
 
 }

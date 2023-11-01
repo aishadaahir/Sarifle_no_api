@@ -51,7 +51,7 @@ tools:context=".MainActivity4">
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="?attr/homeAsUpIndicator"
-            app:tint="#17839E"
+            app:tint="@color/light_teal"
             tools:ignore="DuplicateIds,MissingConstraints" />
 
         <SearchView

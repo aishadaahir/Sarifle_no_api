@@ -99,7 +99,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="?attr/homeAsUpIndicator"
-            app:tint="#17839E"
+            app:tint="@color/light_teal"
             tools:ignore="DuplicateIds,MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -147,7 +147,7 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:backgroundTint="#17849F" />
+            app:backgroundTint="@color/light_teal" />
 
 
     </LinearLayout>

@@ -34,7 +34,52 @@ public class DatabaseHelper2 extends SQLiteOpenHelper {
                 " Tell TEXT, " +
                 " Tell2 TEXT, " +
                 " Accountnum TEXT)";
+
         db.execSQL(createTable);
+    }
+
+    public void insertInitialData(SQLiteDatabase db) {
+//        delete();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL1, "1");
+        contentValues.put(COL2, "mohamed");
+        contentValues.put(COL3, "252617515720");
+        contentValues.put(COL4, "252634437999");
+        contentValues.put(COL5, "340204");
+        contentValues.put(COL6, "mohamed sarifle");
+        String rowIdQuery = "SELECT MAX(rowid) FROM " + TABLE_NAME;
+        Cursor rowIdCursor = db.rawQuery(rowIdQuery, null);
+        long rowId = -1;
+        if (rowIdCursor.moveToFirst()) {
+            rowId = rowIdCursor.getLong(0);
+        }
+        rowIdCursor.close();
+
+        contentValues.put("position", (rowId+1));
+        db.insert(TABLE_NAME, null, contentValues);
+
+        ContentValues contentValues2 = new ContentValues();
+        contentValues2.put(COL1, "2");
+        contentValues2.put(COL2, "alia");
+        contentValues2.put(COL3, "252617515720");
+        contentValues2.put(COL4, "252634435541");
+        contentValues2.put(COL5, "340204");
+        contentValues2.put(COL6, "ali sarifle");
+        String rowIdQuery2 = "SELECT MAX(rowid) FROM " + TABLE_NAME;
+        Cursor rowIdCursor2 = db.rawQuery(rowIdQuery2, null);
+        long rowId2 = -1;
+        if (rowIdCursor2.moveToFirst()) {
+            rowId2 = rowIdCursor2.getLong(0);
+        }
+        rowIdCursor2.close();
+
+        contentValues2.put("position", (rowId2+1));
+
+
+        db.insert(TABLE_NAME, null, contentValues2);
+
+
     }
 
     @Override
