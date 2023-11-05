@@ -69,26 +69,26 @@ public class MainActivity2 extends AppCompatActivity implements TabbedDialog.Dia
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         multiWaveHeader = findViewById(R.id.multiWaveHeader);
-//        LayoutInflater inflater = getLayoutInflater();
-//        view = inflater.inflate(R.layout.activity_register, null);
-//        container = findViewById(R.id.container);
+        LayoutInflater inflater = getLayoutInflater();
+        view = inflater.inflate(R.layout.activity_register, null);
+        container = findViewById(R.id.container);
 
-//        radioGroup = view.findViewById(R.id.radioGroup);
-//        radioButton1 = view.findViewById(R.id.radioButton1);
-//        radioButton2 = view.findViewById(R.id.radioButton2);
+        radioGroup = view.findViewById(R.id.radioGroup);
+        radioButton1 = view.findViewById(R.id.radioButton1);
+        radioButton2 = view.findViewById(R.id.radioButton2);
 
 //        name = view.findViewById(R.id.name);
 //        phone = view.findViewById(R.id.phone);
         myDB = new DatabaseHelper3(MainActivity2.this);
-//        save = view.findViewById(R.id.save);
+        save = view.findViewById(R.id.save);
 //        imgView=view.findViewById(R.id.imgViewprofile);
 //        imgViewEdit=view.findViewById(R.id.imgViewEdit);
-//        topcon4=view.findViewById(R.id.topcon4);
+        topcon4=view.findViewById(R.id.topcon4);
 //        topcon5=findViewById(R.id.topcon5);
 //        layimg=view.findViewById(R.id.layimg);
-//        Layout=view.findViewById(R.id.linearLayout2);
-//        imageButton = findViewById(R.id.skip);
-//        imageButton.setVisibility(View.GONE);
+        Layout=view.findViewById(R.id.linearLayout2);
+        imageButton = findViewById(R.id.skip);
+        imageButton.setVisibility(View.GONE);
 
 //        int orientation = getResources().getConfiguration().orientation;
 //        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -96,44 +96,34 @@ public class MainActivity2 extends AppCompatActivity implements TabbedDialog.Dia
 //        } else {
 //            ORIENTATION_PORTRAIT();
 //        }
-//        save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                int selectedId = radioGroup.getCheckedRadioButtonId();
-//                String names = name.getText().toString();
-//                String phones = phone.getText().toString();
-//                if(!names.equals("") && !phones.equals("") && !String.valueOf(selectedId).equals("-1")){
-//                    RadioButton selectedRadioButton = findViewById(selectedId);
-//                    String selectedOption = selectedRadioButton.getText().toString();
-//                    if(encodedImage1.isEmpty()){
-//                        encodedImage1="placeholder_image_path";
-//                        Log.e("errre",encodedImage1);
-//                    }
-//                    else if (encodedImage1=="") {
-//                        encodedImage1="placeholder_image_path";
-//                        Log.e("errre",encodedImage1);
-//                    }
-//                    myDB.delete();
-//                    myDB.addData(names,phones,selectedOption,"",encodedImage1);
-//                    Toast.makeText(MainActivity2.this, getResources().getString(R.string.save), Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(getApplicationContext(), home.class));
-//                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//                    finish();
-//                }
-//                else{
-//                    Toast.makeText(MainActivity2.this, getResources().getString(R.string.makesure), Toast.LENGTH_SHORT).show();
-//                }
-//
-//                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//                View view = getCurrentFocus();
-//                if (view != null) {
-//                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-//                }
-//
-//            }
-//
-//        });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+                if(!String.valueOf(selectedId).equals("-1")){
+                    RadioButton selectedRadioButton = findViewById(selectedId);
+                    String selectedOption = selectedRadioButton.getText().toString();
+                    myDB.delete();
+                    myDB.addData("","",selectedOption,"","placeholder_image_path");
+                    Toast.makeText(MainActivity2.this, getResources().getString(R.string.save), Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), home.class));
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    finish();
+                }
+                else{
+                    Toast.makeText(MainActivity2.this, getResources().getString(R.string.makesure), Toast.LENGTH_SHORT).show();
+                }
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                View view = getCurrentFocus();
+                if (view != null) {
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+            }
+
+        });
 //        imageButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -191,13 +181,32 @@ public class MainActivity2 extends AppCompatActivity implements TabbedDialog.Dia
 //
 //    }
 
+//    private void checkprof(){
+//        Cursor cursor2 = myDB.readAllData();
+//        if(cursor2.getCount() == 0){
+//            myDB.addData("", "", "", "", "placeholder_image_path");
+//            startActivity(new Intent(getApplicationContext(), home.class));
+//            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//            finish();
+//        }else{
+//            startActivity(new Intent(getApplicationContext(), home.class));
+//            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//            finish();
+//        }
+//
+//    }
+
     private void checkprof(){
         Cursor cursor2 = myDB.readAllData();
         if(cursor2.getCount() == 0){
-            myDB.addData("", "", "", "", "placeholder_image_path");
-            startActivity(new Intent(getApplicationContext(), home.class));
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            finish();
+            SQLiteDatabase db = myDB.getWritableDatabase();
+            // Call onUpgrade to recreate the table
+            myDB.onUpgrade(db, 0, 0);
+            // Close the database
+            db.close();
+            container.addView(view);
+//            imageButton.setVisibility(View.VISIBLE);
+
         }else{
             startActivity(new Intent(getApplicationContext(), home.class));
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -205,7 +214,6 @@ public class MainActivity2 extends AppCompatActivity implements TabbedDialog.Dia
         }
 
     }
-
 
 
     private void requestCallPhonePermission() {

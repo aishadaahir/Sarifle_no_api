@@ -58,8 +58,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues2.put(COL6, "10/25/2023");
         contentValues2.put(COL7, "ali sarifle");
 
+        ContentValues contentValues3 = new ContentValues();
+        contentValues3.put(COL1, "3");
+        contentValues3.put(COL2, "khalid xashi");
+        contentValues3.put(COL3, "252617515720");
+        contentValues3.put(COL4, "252634435541");
+        contentValues3.put(COL5, "340204");
+        contentValues3.put(COL6, "11/04/2023");
+        contentValues3.put(COL7, "khalid sarifle");
+
         db.insert(TABLE_NAME, null, contentValues);
         db.insert(TABLE_NAME, null, contentValues2);
+        db.insert(TABLE_NAME, null, contentValues3);
 
 
     }

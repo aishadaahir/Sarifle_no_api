@@ -20,6 +20,12 @@
     <string name="empty">Liiska waa madhan yahay ku dhufo + badhanka si aad ugu darsato sarifle</string>
     <string name="emptytext">Liiska hoose ka dooro Sarifle</string>
     <string name="error">Buuxi sanduuqa lacagta si aad u sii wadato</string>
+    <string name="title_activity_splash2">splash2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="language">luuqada</string>
+
 
 
 
